@@ -568,7 +568,7 @@ Public Class PageLinkLobby
                            Thread.Sleep(1000)
                            StartETWatcher()
                            Thread.Sleep(500)
-                           While Not IsWatcherStarted OrElse McPortForward.LocalPort Is Nothing OrElse HostInfo Is Nothing
+                           While Not IsWatcherStarted OrElse LobbyInfoProvider.McForward Is Nothing OrElse LobbyInfoProvider.McBroadcast Is Nothing OrElse HostInfo Is Nothing
                                Thread.Sleep(500)
                            End While
                            Dim hostname As String = If(String.IsNullOrWhiteSpace(HostInfo.Username), HostInfo.Hostname, HostInfo.Username)
@@ -653,7 +653,7 @@ Public Class PageLinkLobby
 
     '复制 IP
     Private Sub BtnFinishCopyIp_Click(sender As Object, e As EventArgs) Handles BtnFinishCopyIp.Click
-        Dim Ip As String = "127.0.0.1:" & McPortForward.LocalPort
+        Dim Ip As String = "127.0.0.1:" & LobbyInfoProvider.JoinerLocalPort
         MyMsgBox("大厅创建者的游戏地址：" & Ip & vbCrLf & "仅推荐在 MC 多人游戏列表不显示大厅广播时使用 IP 连接。通过 IP 连接将可能要求使用正版档案。", "复制 IP",
                  Button1:="复制", Button2:="返回", Button1Action:=Sub() ClipboardSet(Ip))
     End Sub
